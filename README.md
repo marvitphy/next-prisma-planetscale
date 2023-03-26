@@ -6,4 +6,4 @@ Aplicação de estudo acerca das tecnologias:
 
 Todo App simples com o propósito de estudar as tecnologias acima.
 
-[Todo App](https://next-prisma-planetscale-marvitphy.vercel.app/])
+[Todo App](https://next-prisma-planetscale-marvitphy.vercel.app])
