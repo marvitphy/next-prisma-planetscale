@@ -10,16 +10,29 @@ export interface Todo {
 }
 
 export async function getTodos(): Promise<Todo[]> {
-  const todos = await prisma.todo.findMany();
+  const todos = await prisma.todo.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
   return todos;
 }
 
-export async function createTodo(todo: Todo): Promise<Todo> {
+export async function createTodo(todo: { title: string }): Promise<Todo> {
   const newTodo = await prisma.todo.create({
     data: {
       title: todo.title,
-      description: todo.description,
+      description: "Teste",
     },
   });
   return newTodo;
+}
+
+export async function deleteTodo(id: string) {
+  const deletedTodo = await prisma.todo.delete({
+    where: {
+      id: id,
+    },
+  });
+  return deletedTodo;
 }

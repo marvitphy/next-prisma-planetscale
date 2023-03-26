@@ -3,7 +3,8 @@ import { createTodo } from "@/services/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
-  name: string;
+  message: string;
+  todo?: any;
 };
 
 export default async function handler(
@@ -12,9 +13,15 @@ export default async function handler(
 ) {
   if (req.method == "POST") {
     const data = req.body;
-    await createTodo(data);
-    res.status(200).json({ name: "John Doe" });
-  } else {
-    res.status(200).json({ name: "John Doe" });
+    const newtodo = await createTodo(data);
+    res.status(200).json({
+      message: "Todo created",
+      todo: newtodo,
+    });
+  } else if (req.method == "DELETE") {
+    const data = req.query;
+    res.status(200).json({
+      message: JSON.stringify(data),
+    });
   }
 }
